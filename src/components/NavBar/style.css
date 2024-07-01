@@ -1,0 +1,160 @@
+.navBar {
+  border-bottom: 1px solid #1aab8a;
+  background-color: #fff;
+}
+
+.containerNav {
+  width: 80vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 1.2rem;
+  margin: auto;
+  line-height: 3rem;
+}
+
+.iconNav {
+  display: flex;
+  overflow: hidden;
+}
+
+.iconNav img {
+  object-fit: cover;
+  object-position: center;
+  width: 3rem;
+  height: 3rem;
+  display: block;
+}
+
+.listNav ul {
+  display: flex;
+  gap: 1.5rem;
+  height: 0;
+  transition: 0.3s;
+  flex-direction: row;
+  height: 3rem;
+}
+
+.itemNav {
+  color: black;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.itemNav:hover {
+  color: #1aab8a;
+}
+
+.itemNav:hover .itemIcon {
+  left: -1.2rem;
+  opacity: 1;
+}
+
+.itemNav .itemIcon {
+  display: flex;
+  align-items: center;
+  height: 3rem;
+  position: absolute;
+  left: 0;
+  transition: 0.3s;
+  opacity: 0;
+}
+
+.openMenu {
+  border: 1px solid #1aab8a;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.3rem;
+  color: #1aab8a;
+  cursor: pointer;
+}
+
+.openMenu label {
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#menuCheck,
+.openMenu {
+  display: none;
+}
+
+.cartBox {
+  cursor: pointer;
+  position: relative;
+}
+
+.cartIcon label {
+  border: 1px solid #1aab8a;
+  border-radius: 0.3rem;
+  height: 2rem;
+  width: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+}
+
+#cartCheck {
+  display: none;
+}
+
+#cartCheck:checked ~ .cartBox .cartList {
+  height: auto;
+  border: 1px solid #1aab8a;
+  width: 10rem;
+}
+
+.cartList {
+  position: absolute;
+  background-color: #fff;
+  height: 0;
+  overflow: hidden;
+  left: -2rem;
+  top: 2.3rem;
+}
+
+.cartList ul {
+  list-style: none;
+}
+
+@media only screen and (max-width: 576px) {
+  .containerNav {
+    flex-direction: row-reverse;
+    width: 100vw;
+    align-items: flex-start;
+    padding-top: 1rem;
+  }
+
+  .navBar {
+    border-bottom: 1px solid #1aab8a;
+    background-color: #1aab8a;
+  }
+
+  .openMenu {
+    display: block;
+    border: 1px solid #fff;
+    color: #fff;
+    display: flex;
+  }
+
+  .listNav ul {
+    flex-direction: column;
+    gap: 0rem;
+    height: 0;
+    overflow: hidden;
+  }
+
+  #menuCheck:checked ~ .listNav ul {
+    height: 6rem;
+  }
+
+  .itemNav:hover {
+    color: #fff;
+  }
+}

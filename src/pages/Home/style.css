@@ -1,0 +1,11 @@
+.homeContainer {
+  min-height: 100vh;
+}
+
+.productsBox {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  width: 95%;
+  margin: auto;
+}

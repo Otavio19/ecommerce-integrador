@@ -1,0 +1,17 @@
+.btnContainer {
+  background-color: #1aab8a;
+  color: #fff;
+  border: none;
+  font-size: 1.2rem;
+  display: flex;
+  line-height: 2rem;
+  justify-content: center;
+  align-items: center;
+  padding: 0 0.5rem;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.btnContainer:hover {
+  transform: scale(1.1);
+}
