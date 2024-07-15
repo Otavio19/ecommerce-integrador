@@ -1,0 +1,14 @@
+.sectionBox {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.sectionBox .titleSection {
+  font-size: 2.5rem;
+}
+.cardList {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}

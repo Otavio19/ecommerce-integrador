@@ -7,13 +7,13 @@ import Button from "../Button";
 import { BiSolidCartAdd } from "react-icons/bi";
 import { BiSolidBasket } from "react-icons/bi";
 
-const Card = ({ productTitle, productValue }) => {
+const Card = ({ productTitle, productValue, productImage }) => {
   const saveProduct = (product) => {
     localStorage.setItem("productList", JSON.stringify(product));
   };
   return (
     <div className="cardContainer">
-      <img src="https://via.placeholder.com/200" alt="" />
+      <img src={productImage} alt="" />
       <h2>{productTitle}</h2>
       <p>${productValue}</p>
       <div className="btnBox">
