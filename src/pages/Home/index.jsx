@@ -3,28 +3,16 @@ import Card from "../../components/Card";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import CardList from "../../components/CardList";
-
 const Home = () => {
-  const [products, setProducts] = useState([]);
   const [productsEcommerce, setProductsEcommerce] = useState();
 
-  const company = useParams();
+  const { id_company } = useParams();
   useEffect(() => {
-    fetch(
-      `http://localhost:3333/category/ecommerce/be900914-2cbe-4958-aaeb-03b2301555d5`
-    )
+    fetch(`http://localhost:3333/category/ecommerce/${id_company}`)
       .then((response) => {
         return response.json();
       })
       .then((data) => setProductsEcommerce(data));
-
-    fetch(`http://localhost:3333/product/company/${company.company}`)
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        setProducts(data);
-      });
   }, []);
   return (
     <div className="homeContainer">

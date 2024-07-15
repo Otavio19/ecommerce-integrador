@@ -12,6 +12,7 @@ const CardList = ({ category, products }) => {
               productTitle={product.name}
               productValue={product.price}
               productImage={product.img}
+              url={product.id}
             />
           ))
         ) : (

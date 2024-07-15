@@ -9,21 +9,19 @@ import { BiCart } from "react-icons/bi";
 //config
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+
 const NavBar = ({ productCart }) => {
-  const [products, setProducts] = useState([]);
+  const { id_company } = useParams();
   const [category, setCategory] = useState([]);
+  const idSession = localStorage.getItem("id_company");
+  const [productList, setProductList] = useState([]);
+  if (!idSession) {
+    localStorage.setItem("id_company", `${id_company}`);
+  }
 
   useEffect(() => {
-    fetch(
-      "http://localhost:3333/category/ecommerce/be900914-2cbe-4958-aaeb-03b2301555d5"
-    )
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => console.log(data));
-    fetch(
-      "http://localhost:3333/category/company/be900914-2cbe-4958-aaeb-03b2301555d5"
-    )
+    fetch(`http://localhost:3333/category/company/${id_company}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Erro ao buscar as categorias.");
@@ -32,8 +30,9 @@ const NavBar = ({ productCart }) => {
       })
       .then((data) => {
         setCategory(data);
-        console.log(data);
       });
+
+    setProductList(JSON.parse(localStorage.getItem("productList")) || []);
   }, []);
 
   //setProducts(JSON.parse(localStorage.getItem("productList")));
@@ -52,17 +51,11 @@ const NavBar = ({ productCart }) => {
             </label>
           </div>
           <ul>
-            <Link to="/" className="itemNav">
+            <Link to={`/${idSession}`} className="itemNav">
               <div className="itemIcon">
                 <BiChevronRight />
               </div>
               <div className="itemText">Home</div>
-            </Link>
-            <Link to="/ProductPage" className="itemNav">
-              <div className="itemIcon">
-                <BiChevronRight />
-              </div>
-              <div className="itemText">Page</div>
             </Link>
             {category.map((category) =>
               category.ecommerce == true ? (
@@ -90,7 +83,11 @@ const NavBar = ({ productCart }) => {
           </div>
           <div className="cartList">
             <ul>
-              <li>Produto 1</li>
+              {productList.map((product, index) => (
+                <li key={index}>
+                  {product.title} - ${product.value}
+                </li>
+              ))}
             </ul>
           </div>
         </div>
