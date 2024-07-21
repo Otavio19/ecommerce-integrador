@@ -107,7 +107,7 @@
 #cartCheck:checked ~ .cartBox .cartList {
   height: auto;
   border: 1px solid #1aab8a;
-  width: 10rem;
+  width: 20rem;
 }
 
 .cartList {

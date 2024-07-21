@@ -1,5 +1,5 @@
 import "./style.css";
-
+import Globais from "../../utils/Globais";
 //Components
 import Button from "../Button";
 
@@ -8,13 +8,28 @@ import { BiSolidCartAdd } from "react-icons/bi";
 import { BiSolidBasket } from "react-icons/bi";
 import { Link } from "react-router-dom";
 
-const Card = ({ productTitle, productValue, productImage, url }) => {
-  const saveProduct = (product) => {
-    const products = JSON.parse(localStorage.getItem("productList")) || [];
+const Card = ({ productTitle, productValue, productImage, url, productId }) => {
+  const productObj = {
+    id: productId,
+    title: productTitle,
+    price: productValue,
+    img: productImage,
+  };
 
-    products.push(product);
+  const saveProduct = () => {
+    const list = Globais.productList;
 
-    localStorage.setItem("productList", JSON.stringify(products));
+    for (let produto of list) {
+      if (produto.id === productObj.id) {
+        console.log("Existe");
+        return;
+      }
+    }
+
+    console.log("Não Existe");
+
+    Globais.productList.push(productObj);
+    console.log("Lista atualizada: ", Globais.productList);
   };
 
   return (

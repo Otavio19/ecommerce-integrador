@@ -1,0 +1,20 @@
+.miniCart {
+  list-style: none;
+  padding: 0.5rem;
+}
+
+.msgNothing {
+  font-size: 1rem;
+  color: red;
+}
+
+.miniCartList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.miniCartItem {
+  display: flex;
+  justify-content: space-between;
+}

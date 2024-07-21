@@ -9,6 +9,7 @@ const CardList = ({ category, products }) => {
         {products && products.length > 0 ? (
           products.map((product) => (
             <Card
+              productId={product.id}
               productTitle={product.name}
               productValue={product.price}
               productImage={product.img}

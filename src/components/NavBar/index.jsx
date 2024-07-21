@@ -1,6 +1,10 @@
 import "./style.css";
+import Globais from "../../utils/Globais";
+import MiniCart from "../MiniCart";
+
 //Img
 import photo from "../../assets/react.svg";
+
 //Icons
 import { BiChevronRight } from "react-icons/bi";
 import { BiMenu } from "react-icons/bi";
@@ -15,7 +19,8 @@ const NavBar = ({ productCart }) => {
   const { id_company } = useParams();
   const [category, setCategory] = useState([]);
   const idSession = localStorage.getItem("id_company");
-  const [productList, setProductList] = useState([]);
+  const [productList, setProductList] = useState(Globais.productList);
+  const [checked, setChecked] = useState(false);
   if (!idSession) {
     localStorage.setItem("id_company", `${id_company}`);
   }
@@ -31,16 +36,24 @@ const NavBar = ({ productCart }) => {
       .then((data) => {
         setCategory(data);
       });
-
-    setProductList(JSON.parse(localStorage.getItem("productList")) || []);
   }, []);
 
-  //setProducts(JSON.parse(localStorage.getItem("productList")));
+  useEffect(() => {
+    setProductList(Globais.productList);
+  }, [Globais.productList]);
+
   return (
     <div className="navBar">
       <div className="containerNav">
         <input type="checkbox" name="" id="menuCheck" />
-        <input type="checkbox" id="cartCheck" />
+        <input
+          type="checkbox"
+          id="cartCheck"
+          checked={checked}
+          onChange={(e) => {
+            setChecked(e.target.checked);
+          }}
+        />
         <div className="iconNav">
           <img src={photo} alt="" />
         </div>
@@ -60,7 +73,7 @@ const NavBar = ({ productCart }) => {
             {category.map((category) =>
               category.ecommerce == true ? (
                 <Link
-                  to={`/${category.id}`}
+                  to={`/CategoryPage/${category.id}`}
                   className="itemNav"
                   key={category.id}
                 >
@@ -82,13 +95,7 @@ const NavBar = ({ productCart }) => {
             </label>
           </div>
           <div className="cartList">
-            <ul>
-              {productList.map((product, index) => (
-                <li key={index}>
-                  {product.title} - ${product.value}
-                </li>
-              ))}
-            </ul>
+            {checked ? <MiniCart /> : <h1>Close</h1>}
           </div>
         </div>
       </div>
